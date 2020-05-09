@@ -3,3 +3,64 @@ body {
     margin: 0 auto;
     background-image: url('../img/map_bg.png');
 }
+div {
+    margin: 5px;
+}
+.grid-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 20% 30% 50%;
+    /*grid-template-columns: 300px 300px 400px;*/
+    grid-column-gap: 10px;
+    margin: 20px;
+}
+.edit {
+    width: 30px;
+    color: white;
+    background-color: #2668ff;
+    border-radius: 3px;
+    padding: 0;
+    border: none;
+    /*font: inherit;*/
+    cursor: pointer;
+    margin: 10px;
+}
+.delete {
+    border-radius: 5px;
+    padding: 0;
+    border: none;
+    color: #2668ff;
+    background-color: white;
+}
+#new_task {
+    /*width: 40%;*/
+    display: grid;
+    /*grid-template-columns: 200px;
+    grid-column-gap: 10px;*/
+    margin: 10px;
+}
+#form-task {
+    display: grid;
+    /*grid-template-columns: 200px;
+    grid-column-gap: 10px;*/
+    margin: 10px;
+}
+#deadline {
+    /*background: white;*/
+}
+#todo_item {
+    background: white;
+    margin: 10px;
+    height: max-content;
+}
+#add-new-task {
+    background: white;
+    margin: 10px;
+}
+#add-new-task p {
+    text-align: center;
+    color: #2668ff;
+}
+#deadline p {
+    color: grey;
+}
