@@ -8,25 +8,67 @@
 <body>
 <div id="container" class="grid-container">
     <div id="new_task">
-        <div id="add-new-task">
+        <div id="add_new_task">
             <p>+NEW TASK</p>
         </div>
         <div id="todo_item">
             <div id="deadline">
                 <p>Tomorrow</p>
             </div>
-            <div>
+            <div id="task_content">
                 <p>I need a plumber to unblock <br> a toilet</p>
             </div>
-            <div>
+            <div id="task_manager">
                 <button class="edit" value="edit">Edit</button>
                 <button class="delete" value="delete">Delete</button>
             </div>
         </div>
     </div>
     <div></div>
-    <div id="form-task">
-        <div>New Task Form</div>
+    <div id="form_task">
+        <form action="" id="create_edit_form">
+            <fieldset form="form_task" id="new_task_content">
+                <p class="field-title">NEW TASK</p>
+                <p>I need a plumber to unblock a toilet, my <br>
+                    daughter's tessy bear sank in the toilet</p>
+                <button id="submit" type="submit" value="create_task">CREATE TASK</button>
+            </fieldset>
+            <fieldset form="form_task" id="new_task_location">
+                <p class="field-title">LOCATION</p>
+                <p>18 Mira av, Dnipro</p>
+            </fieldset>
+            <fieldset form="form_task" id="new_task_type">
+                <p class="field-title">SERVICE TYPE</p>
+                <div class="grid-task-type">
+                    <div class="type-item">
+                        <div><img src="../public/img/electrician.svg" alt=""></div>
+                        <div><p>Electrician</p></div>
+                    </div>
+                    <div>
+                        <div><img src="../public/img/plumber.svg" alt=""></div>
+                        <div><p>Plumber</p></div>
+                    </div>
+                    <div>
+                        <div><img src="../public/img/gardener.svg" alt=""></div>
+                        <div><p>Gardener</p></div>
+                    </div>
+                    <div>
+                        <div><img src="../public/img/housekeeper.svg" alt=""></div>
+                        <div><p>Housekeeper</p></div>
+                    </div>
+                    <div>
+                        <div><img src="../public/img/cook.svg" alt=""></div>
+                        <div><p>Cook</p></div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset form="form_task" id="task_type_template">
+                <p class="field-title">? TASK</p>
+            </fieldset>
+            <fieldset form="form_task" id="task_description">
+                <p class="field-title">TASK DESCRIPTION</p>
+            </fieldset>
+        </form>
     </div>
 </div>
 </body>
