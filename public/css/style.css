@@ -7,9 +7,6 @@ body {
 div {
     margin: 5px;
 }
-form {
-    margin: 10px;
-}
 fieldset {
     background-color: white;
     border-style: solid;
@@ -22,7 +19,7 @@ img {
 .grid-container {
     display: grid;
     width: 100%;
-    grid-template-columns: 20% 30% 50%;
+    grid-template-columns: 20% 30% 40%;
     grid-template-rows: 10% 20% 20% 20% 20% 10%;
     grid-column-gap: 10px;
     margin: 20px;
@@ -64,14 +61,13 @@ img {
 
 /*Styles for right panel*/
 #form-task {
-display: grid;
-grid-template-rows: 10% 20% 20% 20% 20%;
-margin: 10px;
-}
+    display: inline-block;
+    grid-template-rows: 10% 20% 20% 20% 20%;
+    margin: 10px;
+  }
 #todo_item {
-background: white;
-margin: 10px;
-height: max-content;
+    background: white;
+    margin: 10px;
 }
 #new_task_content {
     background-color: lightgray;
@@ -82,15 +78,14 @@ height: max-content;
     border-radius: 3px;
     padding: 10px;
     border: none;
-    cursor: pointer;
     margin: 10px;
 }
 .grid-task-type {
     display: grid;
     width: 100%;
     grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-column-gap: 10px;
-    margin: 20px;
+    grid-column-gap: 5px;
+    margin: 10px;
 }
 .field-title {
     color: grey;
@@ -100,3 +95,9 @@ height: max-content;
     align-content: center;
     margin: 0 auto;
 }
+.slide {
+    right: -1500px;
+    position: relative;
+    top: 0;
+}
+
