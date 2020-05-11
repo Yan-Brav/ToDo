@@ -19,7 +19,7 @@ img {
 .grid-container {
     display: grid;
     width: 100%;
-    grid-template-columns: 20% 30% 40%;
+    grid-template-columns: 20% 40% 35%;
     grid-template-rows: 10% 20% 20% 20% 20% 10%;
     grid-column-gap: 10px;
     margin: 20px;
@@ -97,6 +97,11 @@ img {
 }
 .slide {
     right: -1500px;
+    position: relative;
+    top: 0;
+}
+.is_visible {
+    right: -0px;
     position: relative;
     top: 0;
 }
