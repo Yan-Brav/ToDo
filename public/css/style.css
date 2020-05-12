@@ -61,7 +61,7 @@ img {
 
 /*Styles for right panel*/
 #form-task {
-    display: inline-block;
+    display: grid;
     grid-template-rows: 10% 20% 20% 20% 20%;
     margin: 10px;
   }
@@ -80,6 +80,16 @@ img {
     border: none;
     margin: 10px;
 }
+#type_template {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 50% 50%;
+    margin: 10px;
+}
+#task_summary {
+    font-size: 25px;
+}
 .grid-task-type {
     display: grid;
     width: 100%;
@@ -94,6 +104,23 @@ img {
     display: grid;
     align-content: center;
     margin: 0 auto;
+}
+#electrician, #plumber, #gardener, #housekeeper, #cook {
+    display: grid;
+    align-content: center;
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 100%;
+}
+
+.type_template_item {
+    text-align: center;
+    border: 1px solid #2668ff;
+    border-radius: 10px;
+    padding: 2px;
+    margin: 2px;
+    font-size: 20px;
 }
 .slide {
     right: -1500px;

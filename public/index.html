@@ -10,6 +10,7 @@
             crossorigin="anonymous">
     </script>
     <script src="js/slide.js"></script>
+    <script src="js/rightPanel.js"></script>
     <title>Todo list</title>
 </head>
 <body>
@@ -37,44 +38,48 @@
             <form action="" id="create_edit_form">
                 <fieldset form="form_task" id="new_task_content">
                     <p class="field-title">NEW TASK</p>
-                    <p>I need a plumber to unblock a toilet, my <br>
-                        daughter's tessy bear sank in the toilet</p>
+                    <p id="task_summary">cddddddddddddccaa</p>
+                    <p id="address">xsaxasxasx</p>
                     <button id="submit" type="submit" value="create_task">CREATE TASK</button>
                 </fieldset>
                 <fieldset form="form_task" id="new_task_location">
-                    <p class="field-title">LOCATION</p>
-                    <p>18 Mira av, Dnipro</p>
+                    <label for="location" class="field-title">LOCATION</label>
+                    <div><textarea name="location" id="location" cols="40" rows="3"></textarea></div>
                 </fieldset>
                 <fieldset form="form_task" id="new_task_type">
                     <p class="field-title">SERVICE TYPE</p>
                     <div class="grid-task-type">
                         <div class="type-item">
-                            <div><img src="../public/img/electrician.svg" alt=""></div>
+                            <div id="electrician"><img src="../public/img/electrician.svg"></div>
                             <div><p>Electrician</p></div>
                         </div>
                         <div class="type-item">
-                            <div><img src="../public/img/plumber.svg" alt=""></div>
+                            <div id="plumber"><img src="../public/img/plumber.svg"></div>
                             <div><p>Plumber</p></div>
                         </div>
                         <div class="type-item">
-                            <div><img src="../public/img/gardener.svg" alt=""></div>
+                            <div id="gardener"><img src="../public/img/gardener.svg"></div>
                             <div><p>Gardener</p></div>
                         </div>
                         <div class="type-item">
-                            <div><img src="../public/img/housekeeper.svg" alt=""></div>
+                            <div id="housekeeper"><img src="../public/img/housekeeper.svg"></div>
                             <div><p>Housekeeper</p></div>
                         </div>
                         <div class="type-item">
-                            <div><img src="../public/img/cook.svg" alt=""></div>
+                            <div id="cook"><img src="../public/img/cook.svg"></div>
                             <div><p>Cook</p></div>
                         </div>
                     </div>
                 </fieldset>
                 <fieldset form="form_task" id="task_type_template">
-                    <p class="field-title">? TASK</p>
+                    <p class="field-title"></p>
+                    <div id="type_template">
+
+                    </div>
                 </fieldset>
                 <fieldset form="form_task" id="task_description">
                     <p class="field-title">TASK DESCRIPTION</p>
+                    <textarea name="description" id="" cols="50" rows="5"></textarea>
                 </fieldset>
             </form>
         </div>
