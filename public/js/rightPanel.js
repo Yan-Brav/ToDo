@@ -18,8 +18,14 @@ window.addEventListener('load', function () {
     const housekeeper = document.querySelector('#housekeeper');
     const cook = document.querySelector('#cook');
 
+    const templateTitle = document.querySelector('#task_type_template p');
+    const templateContainer = document.querySelector('#task_type_template');
     const taskTemplates = document.querySelector('#type_template');
     const typeTaskTitle = document.querySelector('#task_type_template p');
+    const taskSummary = document.querySelector('#task_summary');
+    const description = document.querySelector('#description');
+    const location = document.querySelector('#location');
+    const address = document.querySelector('#address');
     //Electrician Task
     function getElectricianTasks() {
         const typeTask = electrician.id;
@@ -111,5 +117,23 @@ window.addEventListener('load', function () {
     }
     cook.addEventListener('click', getCookTask);
 
+    function getTask(event) {
+        if (event.target.className === 'type_template_item') {
+            taskSummary.innerText = `I need a ${templateTitle.innerText.slice(0, -5).toLowerCase()
+            } to ${event.target.innerText.toLowerCase()}. `;
+            description.value = '';
+        }
+    }
+    templateContainer.addEventListener('click', getTask);
+
+    function addDescription() {
+        taskSummary.innerText += ' ' + description.value;
+    }
+    description.addEventListener('change', addDescription);
+
+    function addLocation() {
+        address.innerText = location.value;
+    }
+    location.addEventListener('change', addLocation);
 });
 
