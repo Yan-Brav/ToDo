@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script
             async
             src="https://code.jquery.com/jquery-3.4.1.js"
@@ -35,9 +35,10 @@
     <div></div>
     <div id="form_task">
         <div class="slide">
-            <form action="" id="create_edit_form">
+            <form action="../index.js" method="post" id="create_edit_form">
                 <fieldset form="form_task" id="new_task_content">
                     <p class="field-title">NEW TASK</p>
+                    <p id="data_task"></p>
                     <p id="task_summary"></p>
                     <p id="address"></p>
                     <button id="submit" type="submit" value="create_task">CREATE TASK</button>
@@ -46,36 +47,38 @@
                     <label for="location" class="field-title">LOCATION</label>
                     <div><textarea name="location" id="location" cols="40" rows="3"></textarea></div>
                 </fieldset>
+                <fieldset form="form_task" id="new_task_data">
+                    <label for="exp_data" class="field-title">DATA TASK</label>
+                    <div><input type="date" id="exp_data"></div>
+                </fieldset>
                 <fieldset form="form_task" id="new_task_type">
                     <p class="field-title">SERVICE TYPE</p>
                     <div class="grid-task-type">
                         <div class="type-item">
-                            <div id="electrician"><img src="../public/img/electrician.svg"></div>
+                            <div id="electrician"><img src="img/electrician.svg"></div>
                             <div><p>Electrician</p></div>
                         </div>
                         <div class="type-item">
-                            <div id="plumber"><img src="../public/img/plumber.svg"></div>
+                            <div id="plumber"><img src="img/plumber.svg"></div>
                             <div><p>Plumber</p></div>
                         </div>
                         <div class="type-item">
-                            <div id="gardener"><img src="../public/img/gardener.svg"></div>
+                            <div id="gardener"><img src="img/gardener.svg"></div>
                             <div><p>Gardener</p></div>
                         </div>
                         <div class="type-item">
-                            <div id="housekeeper"><img src="../public/img/housekeeper.svg"></div>
+                            <div id="housekeeper"><img src="img/housekeeper.svg"></div>
                             <div><p>Housekeeper</p></div>
                         </div>
                         <div class="type-item">
-                            <div id="cook"><img src="../public/img/cook.svg"></div>
+                            <div id="cook"><img src="img/cook.svg"></div>
                             <div><p>Cook</p></div>
                         </div>
                     </div>
                 </fieldset>
                 <fieldset form="form_task" id="task_type_template">
                     <p class="field-title"></p>
-                    <div id="type_template">
-
-                    </div>
+                    <div id="type_template"></div>
                 </fieldset>
                 <fieldset form="form_task" id="task_description">
                     <label for="description" class="field-title">TASK DESCRIPTION</label>

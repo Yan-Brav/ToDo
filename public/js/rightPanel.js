@@ -26,6 +26,8 @@ window.addEventListener('load', function () {
     const description = document.querySelector('#description');
     const location = document.querySelector('#location');
     const address = document.querySelector('#address');
+    const deadline = document.querySelector('#exp_data');
+    const dataTask = document.querySelector('#data_task');
     //Electrician Task
     function getElectricianTasks() {
         const typeTask = electrician.id;
@@ -135,5 +137,9 @@ window.addEventListener('load', function () {
         address.innerText = location.value;
     }
     location.addEventListener('change', addLocation);
+    function getDataTask() {
+        dataTask.innerText = deadline.value;
+    }
+    deadline.addEventListener('change', getDataTask);
 });
 
