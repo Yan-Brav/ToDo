@@ -15,6 +15,11 @@
 </head>
 <body>
 <div id="container" class="grid-container">
+    <!--<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d1321.
+    0823671994817!2d35.014811647002226!3d48.5300746414937!3m2!1i1024!2i768
+    !4f13.1!5e0!3m2!1sru!2sua!4v1589450791018!5m2!1sru!2sua"
+            width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""
+            aria-hidden="false" tabindex="0"></iframe>-->
     <div id="new_task">
         <div id="add_new_task">
             <p>+NEW TASK</p>
@@ -35,21 +40,21 @@
     <div></div>
     <div id="form_task">
         <div class="slide">
-            <form action="../index.js" method="post" id="create_edit_form">
+            <form action="/todo" method="post" id="create_edit_form">
                 <fieldset form="form_task" id="new_task_content">
                     <p class="field-title">NEW TASK</p>
                     <p id="data_task"></p>
                     <p id="task_summary"></p>
                     <p id="address"></p>
-                    <button id="submit" type="submit" value="create_task">CREATE TASK</button>
+                    <button id="submit" type="button" value="create_task">CREATE TASK</button>
                 </fieldset>
                 <fieldset form="form_task" id="new_task_location">
                     <label for="location" class="field-title">LOCATION</label>
                     <div><textarea name="location" id="location" cols="40" rows="3"></textarea></div>
                 </fieldset>
                 <fieldset form="form_task" id="new_task_data">
-                    <label for="exp_data" class="field-title">DATA TASK</label>
-                    <div><input type="date" id="exp_data"></div>
+                    <label for="exp_data" class="field-title">EXPIRY DATE</label>
+                    <div><input type="date" id="exp_data" name="data"></div>
                 </fieldset>
                 <fieldset form="form_task" id="new_task_type">
                     <p class="field-title">SERVICE TYPE</p>
@@ -82,7 +87,7 @@
                 </fieldset>
                 <fieldset form="form_task" id="task_description">
                     <label for="description" class="field-title">TASK DESCRIPTION</label>
-                    <div><textarea name="location" id="description" cols="40" rows="3"></textarea></div>
+                    <div><textarea name="description" id="description" cols="40" rows="3"></textarea></div>
                 </fieldset>
             </form>
         </div>

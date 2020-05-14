@@ -17,17 +17,31 @@ window.addEventListener('load', function () {
     const gardener = document.querySelector('#gardener');
     const housekeeper = document.querySelector('#housekeeper');
     const cook = document.querySelector('#cook');
-
-    const templateTitle = document.querySelector('#task_type_template p');
+    //fieldset for task template
     const templateContainer = document.querySelector('#task_type_template');
+    //div for task template
     const taskTemplates = document.querySelector('#type_template');
+    //Task template title <p>
     const typeTaskTitle = document.querySelector('#task_type_template p');
+    //<p> for summary task
     const taskSummary = document.querySelector('#task_summary');
+    //Textarea for description
     const description = document.querySelector('#description');
+    //Textarea for location
     const location = document.querySelector('#location');
+    //<p> for location (address)
     const address = document.querySelector('#address');
+    //<input type date> for expiry date
     const deadline = document.querySelector('#exp_data');
+    //<p> for expiry date
     const dataTask = document.querySelector('#data_task');
+    //Create-Edit button
+    const buttonCreateEdit = document.querySelector('#submit');
+
+    const requestURL = 'http://localhost:3333/todo';
+    //Div for sliding panel
+    const slideForm = document.querySelector('.slide');
+
     //Electrician Task
     function getElectricianTasks() {
         const typeTask = electrician.id;
@@ -118,28 +132,53 @@ window.addEventListener('load', function () {
         });
     }
     cook.addEventListener('click', getCookTask);
-
+    //Insertion a type of task to task title
     function getTask(event) {
         if (event.target.className === 'type_template_item') {
-            taskSummary.innerText = `I need a ${templateTitle.innerText.slice(0, -5).toLowerCase()
+            taskSummary.innerText = `I need a ${typeTaskTitle.innerText.slice(0, -5).toLowerCase()
             } to ${event.target.innerText.toLowerCase()}. `;
             description.value = '';
         }
     }
     templateContainer.addEventListener('click', getTask);
-
+    //Addition a description to task
     function addDescription() {
         taskSummary.innerText += ' ' + description.value;
     }
     description.addEventListener('change', addDescription);
-
+    //Addition a location to summary
     function addLocation() {
         address.innerText = location.value;
     }
     location.addEventListener('change', addLocation);
+    //Addition an expiry date to summary
     function getDataTask() {
         dataTask.innerText = deadline.value;
     }
     deadline.addEventListener('change', getDataTask);
+
+    //buttonCreateEdit
+    //Collection info for DB
+    async function getTaskInfo() {
+        const infoObject = {
+            location: location.value,
+            type: typeTaskTitle.innerText.slice(0, -5).toLowerCase(),
+            task: taskSummary.innerText,
+            description: description.value,
+            date: deadline.value
+        };
+        await fetch(requestURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                    },
+            body: JSON.stringify(infoObject)
+        });
+        $(slideForm).animate({right: '-=1450px'}, 750);
+        // console.log(infoObject);
+
+    }
+    buttonCreateEdit.addEventListener('click', getTaskInfo);
+
 });
 
