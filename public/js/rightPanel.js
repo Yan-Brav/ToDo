@@ -174,7 +174,7 @@ window.addEventListener('load', function () {
                     },
             body: JSON.stringify(infoObject)
         });
-        $(slideForm).animate({right: '-=1450px'}, 750);
+        $(slideForm).animate({right: '-=1450px'}, 800);
         // console.log(infoObject);
 
     }
