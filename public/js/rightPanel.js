@@ -37,10 +37,19 @@ window.addEventListener('load', function () {
     const dataTask = document.querySelector('#data_task');
     //Create-Edit button
     const buttonCreateEdit = document.querySelector('#submit');
+    const closeButton = document.querySelector('.form_task_close');
 
-    const requestURL = 'http://localhost:3333/todo';
+    const postRequestURL = 'http://localhost:3333/todo';
+    const getAllRequestURL = 'http://localhost:3333';
     //Div for sliding panel
     const slideForm = document.querySelector('.slide');
+
+    async function getAllFromDB() {
+        const listToDos = await fetch(getAllRequestURL);
+        const data = await listToDos.join();
+        console.log(data);
+    }
+    document.addEventListener('DOMContentLoaded', getAllFromDB);
 
     //Electrician Task
     function getElectricianTasks() {
@@ -157,8 +166,25 @@ window.addEventListener('load', function () {
     }
     deadline.addEventListener('change', getDataTask);
 
-    //buttonCreateEdit
-    //Collection info for DB
+    function cleanForm() {
+        location.value = '';
+        description.value = '';
+        deadline.value = '';
+        taskSummary.innerText = '';
+        typeTaskTitle.innerText = '';
+        taskTemplates.innerHTML = '';
+        address.innerText = '';
+        dataTask.innerText = '';
+        $(plumber).css('border', 'none');
+        $(gardener).css('border', 'none');
+        $(housekeeper).css('border', 'none');
+        $(cook).css('border', 'none');
+        $(electrician).css('border', 'none');
+        $(slideForm).animate({right: '-=1500px'}, 750);
+    }
+    closeButton.addEventListener('click', cleanForm);
+
+    //Sending the info to DB
     async function getTaskInfo() {
         const infoObject = {
             location: location.value,
@@ -167,18 +193,17 @@ window.addEventListener('load', function () {
             description: description.value,
             date: deadline.value
         };
-        await fetch(requestURL, {
+        await fetch(postRequestURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
                     },
             body: JSON.stringify(infoObject)
         });
-        $(slideForm).animate({right: '-=1450px'}, 800);
-        // console.log(infoObject);
-
+        cleanForm();
     }
     buttonCreateEdit.addEventListener('click', getTaskInfo);
+
 
 });
 

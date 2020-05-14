@@ -18,6 +18,17 @@ app.get('/', (req, res) => {
     res.sendFile(path.join('index.html'));
 });
 
+app.get('/todo', (req, res) => {
+   db.collection('todos').find().toArray((err, docs) => {
+       if (err) {
+           console.log(err);
+           return res.sendStatus(500);
+       }
+       console.log(docs);
+       res.send(docs);
+   })
+});
+
 app.post('/todo', (req, res) => {
     let todo = {
         location: req.body.location,
