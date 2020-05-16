@@ -98,6 +98,9 @@ iframe {
 #task_summary {
     font-size: 25px;
 }
+#todo_id {
+    display: none;
+}
 .grid-task-type {
     display: grid;
     width: 100%;

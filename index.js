@@ -55,12 +55,28 @@ app.delete('/todos/:id', (req, res) => {
    })
 });
 
+app.put('/todos/:id', (req, res) => {
+    db.collection('todos').updateOne({_id: ObjectID(req.params.id)}, {$set:
+            {location: req.body.location,
+            type: req.body.type,
+            task: req.body.task,
+            description: req.body.description,
+            date: req.body.date}},
+        (err) => {
+            if (err) {
+                console.log(err);
+                return res.sendStatus(500);
+            }
+            res.sendStatus(200);
+        })
+});
+
 client.connect(err => {
     if (err) {
         console.log(err);
     }
     console.log('Connection to myToDos is successful');
-    db =client.db(dbName);
+    db = client.db(dbName);
     app.listen(3333, () => console.log('Server is running ...'));
 });
 

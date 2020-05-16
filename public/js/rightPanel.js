@@ -44,7 +44,9 @@ window.addEventListener('load', function () {
     //Div for sliding panel
     const slideForm = document.querySelector('.slide');
     //Div for todos on the right panel
-    let divFromDB = document.querySelector('#from_db');
+    const divFromDB = document.querySelector('#from_db');
+    //Element for keeping todos ID
+    const todoIDStorage = document.querySelector('#todo_id');
     //Buttons for manage todos
     let buttonEdit;
     let buttonDelete;
@@ -235,6 +237,7 @@ window.addEventListener('load', function () {
                 typeTaskTitle.innerText = todo.type.toUpperCase() + ' TASK';
                 address.innerText = todo.location;
                 dataTask.innerText = todo.date;
+                todoIDStorage.innerText = todo._id;
                 switch (todo.type.toLowerCase()) {
                     case 'electrician': {
                         getElectricianTasks();
@@ -262,9 +265,9 @@ window.addEventListener('load', function () {
                     break;
                 }
                 if ($('.slide').css('right') === '-1500px')     {
-                    buttonCreateEdit.innerText = 'EDIT TASK';
                     $(slideForm).animate({right: '+=1500px'}, 750);
                 }
+                buttonCreateEdit.innerText = 'EDIT TASK';
             }
             buttonEdit.addEventListener('click', editTodo);
         });
@@ -285,12 +288,18 @@ window.addEventListener('load', function () {
                  },
                  body: JSON.stringify(infoObject)
              });
-         }else if (buttonCreateEdit.innerText === 'EDIT TASK')
-             await fetch()
-
+         }else if (buttonCreateEdit.innerText === 'EDIT TASK') {
+             let url = `${requestURL}/${todoIDStorage.innerText}`;
+             await fetch(url, {
+                 method: 'PUT',
+                 headers: {
+                     'Content-Type': 'application/json'
+                 },
+                 body: JSON.stringify(infoObject)
+             });
+         }
         cleanForm();
         await getAllFromDB();
-        // createTodoContainer(infoObject.date, infoObject.task);
     }
     buttonCreateEdit.addEventListener('click', getTaskInfo);
     getAllFromDB();
