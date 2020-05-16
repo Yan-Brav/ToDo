@@ -32,25 +32,53 @@ window.addEventListener('load', function () {
     //<p> for location (address)
     const address = document.querySelector('#address');
     //<input type date> for expiry date
-    const deadline = document.querySelector('#exp_data');
+    const expDate = document.querySelector('#exp_data');
     //<p> for expiry date
     const dataTask = document.querySelector('#data_task');
     //Create-Edit button
     const buttonCreateEdit = document.querySelector('#submit');
+    //Close button (X)
     const closeButton = document.querySelector('.form_task_close');
 
-    const postRequestURL = 'http://localhost:3333/todo';
-    const getAllRequestURL = 'http://localhost:3333';
+    const requestURL = 'http://localhost:3333/todos';
     //Div for sliding panel
     const slideForm = document.querySelector('.slide');
+    //Div for todos on the right panel
+    let divFromDB = document.querySelector('#from_db');
+    //Buttons for manage todos
+    let buttonEdit;
+    let buttonDelete;
+    let infoObject = {};
 
-    async function getAllFromDB() {
-        const listToDos = await fetch(getAllRequestURL);
-        const data = await listToDos.join();
-        console.log(data);
+    //Candidate to view class
+    function createTodoContainer(date, task) {
+        const divTodoContainer = document.createElement('div');
+        const divDeadline = document.createElement('div');
+        const divTaskContent = document.createElement('div');
+        const divTaskManager = document.createElement('div');
+        buttonEdit = document.createElement('button');
+        buttonDelete = document.createElement('button');
+        //Set classes to elements
+        divTodoContainer.className = 'todo_items';
+        divDeadline.className = 'deadline';
+        divTaskContent.className = 'task_content';
+        divTaskManager.className = 'task_manager';
+        buttonEdit.className = 'edit';
+        buttonDelete.className = 'delete';
+        //Filling content todos
+        divDeadline.innerText = date;
+        divTaskContent.innerText = task;
+        buttonEdit.innerText = 'Edit';
+        buttonDelete.innerText = 'Delete';
+        //Appending elements
+        divTaskManager.appendChild(buttonEdit);
+        divTaskManager.appendChild(buttonDelete);
+        divTodoContainer.appendChild(divDeadline);
+        divTodoContainer.appendChild(divTaskContent);
+        divTodoContainer.appendChild(divTaskManager);
+        divFromDB.appendChild(divTodoContainer);
+        return divTodoContainer;
     }
-    document.addEventListener('DOMContentLoaded', getAllFromDB);
-
     //Electrician Task
     function getElectricianTasks() {
         const typeTask = electrician.id;
@@ -162,14 +190,14 @@ window.addEventListener('load', function () {
     location.addEventListener('change', addLocation);
     //Addition an expiry date to summary
     function getDataTask() {
-        dataTask.innerText = deadline.value;
+        dataTask.innerText = expDate.value;
     }
-    deadline.addEventListener('change', getDataTask);
+    expDate.addEventListener('change', getDataTask);
 
     function cleanForm() {
         location.value = '';
         description.value = '';
-        deadline.value = '';
+        expDate.value = '';
         taskSummary.innerText = '';
         typeTaskTitle.innerText = '';
         taskTemplates.innerHTML = '';
@@ -185,25 +213,86 @@ window.addEventListener('load', function () {
     closeButton.addEventListener('click', cleanForm);
 
     //Sending the info to DB
+
+    async function getAllFromDB() {
+        divFromDB.innerHTML = '';
+        const listToDos = await fetch(requestURL);
+        const todos = await listToDos.json();
+        await todos.forEach(todo => {
+            const containerTodo = createTodoContainer(todo.date, todo.task);
+            divFromDB.appendChild(containerTodo);
+            let url = `${requestURL}/${todo._id}`;
+            async function deleteTodo() {
+                await fetch(url, {method: 'DELETE'});
+                containerTodo.remove();
+            }
+            buttonDelete.addEventListener('click', deleteTodo);
+            function editTodo() {
+                location.value = todo.location;
+                description.value = todo.description;
+                expDate.value = todo.date;
+                taskSummary.innerText = todo.task;
+                typeTaskTitle.innerText = todo.type.toUpperCase() + ' TASK';
+                address.innerText = todo.location;
+                dataTask.innerText = todo.date;
+                switch (todo.type.toLowerCase()) {
+                    case 'electrician': {
+                        getElectricianTasks();
+                    }
+                    break;
+                    case 'plumber': {
+                        getPlumberTask();
+                    }
+                    break;
+                    case 'gardener': {
+                        getGardenerTask();
+                    }
+                    break;
+                    case 'housekeeper': {
+                        getHousekeeperTask();
+                    }
+                    break;
+                    case 'cook': {
+                        getCookTask();
+                    }
+                    break;
+                    default: {
+                        taskTemplates.innerHTML = '';
+                    }
+                    break;
+                }
+                if ($('.slide').css('right') === '-1500px')     {
+                    buttonCreateEdit.innerText = 'EDIT TASK';
+                    $(slideForm).animate({right: '+=1500px'}, 750);
+                }
+            }
+            buttonEdit.addEventListener('click', editTodo);
+        });
+    }
     async function getTaskInfo() {
-        const infoObject = {
+         infoObject = {
             location: location.value,
             type: typeTaskTitle.innerText.slice(0, -5).toLowerCase(),
             task: taskSummary.innerText,
             description: description.value,
-            date: deadline.value
+            date: expDate.value
         };
-        await fetch(postRequestURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-                    },
-            body: JSON.stringify(infoObject)
-        });
+         if (buttonCreateEdit.innerText === 'CREATE TASK') {
+             await fetch(requestURL, {
+                 method: 'POST',
+                 headers: {
+                     'Content-Type': 'application/json'
+                 },
+                 body: JSON.stringify(infoObject)
+             });
+         }else if (buttonCreateEdit.innerText === 'EDIT TASK')
+             await fetch()
+
         cleanForm();
+        await getAllFromDB();
+        // createTodoContainer(infoObject.date, infoObject.task);
     }
     buttonCreateEdit.addEventListener('click', getTaskInfo);
-
-
+    getAllFromDB();
 });
 

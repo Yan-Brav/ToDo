@@ -8,7 +8,7 @@ let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
-let db
+let db;
 const dbUrl = 'mongodb://localhost:27017';
 const dbName = 'myToDos';
 const client = new MongoClient(dbUrl);
@@ -18,18 +18,17 @@ app.get('/', (req, res) => {
     res.sendFile(path.join('index.html'));
 });
 
-app.get('/todo', (req, res) => {
+app.get('/todos', (req, res) => {
    db.collection('todos').find().toArray((err, docs) => {
        if (err) {
            console.log(err);
            return res.sendStatus(500);
        }
-       console.log(docs);
        res.send(docs);
    })
 });
 
-app.post('/todo', (req, res) => {
+app.post('/todos', (req, res) => {
     let todo = {
         location: req.body.location,
         type: req.body.type,
@@ -44,7 +43,16 @@ app.post('/todo', (req, res) => {
         }
         res.send(todo);
     });
+});
 
+app.delete('/todos/:id', (req, res) => {
+    db.collection('todos').deleteOne({_id: ObjectID(req.params.id)}, (err) => {
+       if (err) {
+           console.log(err);
+           return res.sendStatus(500);
+       }
+       res.sendStatus(200);
+   })
 });
 
 client.connect(err => {

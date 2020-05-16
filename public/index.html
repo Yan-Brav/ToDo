@@ -24,17 +24,8 @@
         <div id="add_new_task">
             <p>+NEW TASK</p>
         </div>
-        <div id="todo_item">
-            <div id="deadline">
-                <p>Tomorrow</p>
-            </div>
-            <div id="task_content">
-                <p>I need a plumber to unblock <br> a toilet</p>
-            </div>
-            <div id="task_manager">
-                <button class="edit" value="edit">Edit</button>
-                <button class="delete" value="delete">Delete</button>
-            </div>
+        <div id="from_db">
+
         </div>
     </div>
     <div></div>
@@ -55,7 +46,10 @@
                 </fieldset>
                 <fieldset form="form_task" id="new_task_data">
                     <label for="exp_data" class="field-title">EXPIRY DATE</label>
-                    <div><input type="date" id="exp_data" name="data"></div>
+                    <div>
+                        <input type="date" id="exp_data" name="data">
+                        <p id="todo_id"></p>
+                    </div>
                 </fieldset>
                 <fieldset form="form_task" id="new_task_type">
                     <p class="field-title">SERVICE TYPE</p>

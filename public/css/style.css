@@ -54,7 +54,7 @@ iframe {
     display: grid;
     margin: 10px;
 }
-#deadline p {
+.deadline  {
     color: grey;
 }
 #add_new_task {
@@ -73,7 +73,7 @@ iframe {
     grid-template-rows: 10% 10% 20% 20% 20% 20%;
     margin: 10px;
   }
-#todo_item {
+.todo_items {
     background: white;
     margin: 10px;
 }
