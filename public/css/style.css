@@ -2,7 +2,12 @@
 body {
     width: 100%;
     margin: 0 auto;
+    overflow-x: hidden;
     background-image: url('../img/map_bg.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 div {
     margin: 5px;
@@ -69,6 +74,7 @@ iframe {
 
 /*Styles for right panel*/
 #form-task {
+    position: relative;
     display: grid;
     grid-template-rows: 10% 10% 20% 20% 20% 20%;
     margin: 10px;

@@ -267,6 +267,7 @@ window.addEventListener('load', function () {
                 if ($('.slide').css('right') === '-1500px')     {
                     $(slideForm).animate({right: '+=1500px'}, 750);
                 }
+                // $(slideForm).css('transform: translateX(0px) ');
                 buttonCreateEdit.innerText = 'EDIT TASK';
             }
             buttonEdit.addEventListener('click', editTodo);

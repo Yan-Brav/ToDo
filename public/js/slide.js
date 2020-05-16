@@ -11,10 +11,4 @@ window.addEventListener('load', function () {
         saveButton.innerText = 'CREATE TASK';
         todoIDStorage.innerText = '';
     });
-    /*$(editButton).on('click', function () {
-        if ($('.slide').css('right') === '-1500px') {
-            saveButton.innerText = 'EDIT TASK';
-            $(slideForm).animate({right: '+=1500px'}, 750);
-        }
-    });*/
 });
