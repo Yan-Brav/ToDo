@@ -132,7 +132,8 @@ iframe {
 }
 .type_template_item {
     text-align: center;
-    border: 1px solid #2668ff;
+    /*border: 1px solid #2668ff;*/
+    border: none;
     border-radius: 10px;
     padding: 2px;
     margin: 2px;

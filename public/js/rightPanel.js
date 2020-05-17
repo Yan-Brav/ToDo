@@ -173,9 +173,14 @@ window.addEventListener('load', function () {
     cook.addEventListener('click', getCookTask);
     //Insertion a type of task to task title
     function getTask(event) {
+        const taskTemplates = document.querySelectorAll('.type_template_item');
+        taskTemplates.forEach(item => {
+            item.style = 'border: none';
+        });
         if (event.target.className === 'type_template_item') {
             taskSummary.innerText = `I need a ${typeTaskTitle.innerText.slice(0, -5).toLowerCase()
             } to ${event.target.innerText.toLowerCase()}. `;
+            event.target.style = 'border: 1px solid #2668ff';
             description.value = '';
         }
     }
