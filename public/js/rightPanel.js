@@ -1,5 +1,6 @@
 'use strict';
 window.addEventListener('load', function () {
+    //MODEL
     //Lists of tasks
     const listElectricianTask = ['Fix a light', 'Fix a socket', 'Fix a switch',
         'Install a light', 'Install a socket', 'Install a switch'];
@@ -11,6 +12,7 @@ window.addEventListener('load', function () {
         'Wash the dishes', 'Knock out carpet', 'Clean up'];
     const listCookTask = ['Cook meat', 'Make a cake', 'Cook borsch',
         'Make coffee', 'Sour cabbage', 'Make canned food'];
+    //VIEW
     //Images of task types
     const electrician = document.querySelector('#electrician');
     const plumber = document.querySelector('#plumber');
@@ -39,8 +41,9 @@ window.addEventListener('load', function () {
     const buttonCreateEdit = document.querySelector('#submit');
     //Close button (X)
     const closeButton = document.querySelector('.form_task_close');
-
+    //MODEL
     const requestURL = 'http://localhost:3333/todos';
+    //VIEW
     //Div for sliding panel
     const slideForm = document.querySelector('.slide');
     //Div for todos on the right panel
@@ -50,8 +53,9 @@ window.addEventListener('load', function () {
     //Buttons for manage todos
     let buttonEdit;
     let buttonDelete;
+    //MODEL
     let infoObject = {};
-
+    //VIEW
     //Candidate to view class
     function createTodoContainer(date, task) {
         const divTodoContainer = document.createElement('div');
@@ -81,6 +85,7 @@ window.addEventListener('load', function () {
         divFromDB.appendChild(divTodoContainer);
         return divTodoContainer;
     }
+    //CONTROLLER
     //Electrician Task
     function getElectricianTasks() {
         const typeTask = electrician.id;
@@ -135,7 +140,7 @@ window.addEventListener('load', function () {
         });
     }
     gardener.addEventListener('click', getGardenerTask);
-//Housekeeper task
+    //Housekeeper task
     function getHousekeeperTask() {
         const typeTask = housekeeper.id;
         $(plumber).css('border', 'none');
@@ -153,7 +158,7 @@ window.addEventListener('load', function () {
         });
     }
     housekeeper.addEventListener('click', getHousekeeperTask);
-//Cook task
+    //Cook task
     function getCookTask() {
         const typeTask = cook.id;
         $(plumber).css('border', 'none');
